@@ -19,9 +19,9 @@ export class TasksComponent implements OnInit {
     })
   }
 
-  deleteTask(task: Task) {
-    this.taskService.deleteTask(task).subscribe(() => {
-      this.tasks = this.tasks.filter(t => t.id !== task.id)
+  addTask(task: Task) {
+    this.taskService.addTask(task).subscribe(task => {
+      this.tasks.push(task)
     })
   }
 
@@ -29,4 +29,11 @@ export class TasksComponent implements OnInit {
     task.reminder = !task.reminder
     this.taskService.updateTaskReminder(task).subscribe()
   }
+
+  deleteTask(task: Task) {
+    this.taskService.deleteTask(task).subscribe(() => {
+      this.tasks = this.tasks.filter(t => t.id !== task.id)
+    })
+  }
+
 }
